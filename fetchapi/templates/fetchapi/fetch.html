@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/ 4.5.3/cyborg/bootstrap.min.css"
+        integrity="sha512-QzwqVdCfEIUhmovY1J/ET110h4MLuvEpwVpTVTRhChwzgfkrQH9BMcDvgwFp15fMUGVLJAPSEXJVHu0Duhmctg==" crossorigin="anonymous" />
+    <title>News App</title>
+</head>
+<body>
+    <div class="navbar fixed-top navbar-dark bg-dark">
+        <div class="container">
+            <h4 style="color: rgb(255, 255, 255);"> News App <h4 style="color: rgb(154, 255, 0);">CONSUME EXTERNAL API</h4></h4>
+            <img src="{% static 'fetchapi/bright_news.png'%}" class="image" style="width:90px;" alt="">
+        </div>
+    </div>
+    <div class="jumbotron" style="text-align: center; margin-top:40px;">
+        <h2>Latest News <a href="https:newsapi.org" style="text-decoration: none;">News API</a></h2>
+        <img src="{% static 'fetchapi/bright_news.png' %}" class="image" style="width: 150px; margin-bottom: -50px;" alt="">
+    </div>
+
+    
+    <div class="container">
+        {% for item in myNews %}
+        <div class="card border-primary mb-3">
+            <img src="{{ item.image }}" alt="image">
+        </div>
+        <div class="card border-primary mb-3">
+            <h4><span class="badge badge-primary">Headline:</span></h4>
+            <h5>{{ itme.desc }}{{ value|linebreaks }}</h5>
+            <h4><span class="badge badge-success">Description:</span></h4>
+            <h5>{{ item.content }}{{ value|linebreaks }}</h5>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
