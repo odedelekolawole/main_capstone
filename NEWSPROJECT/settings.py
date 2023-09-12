@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news1.apps.News1Config',
+    'news2.apps.News2Config',
     'fetchapi.apps.FetchapiConfig',
     'accounts.apps.AccountsConfig',
     'rest_framework',
