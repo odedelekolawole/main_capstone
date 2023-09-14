@@ -1,18 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpRequest
-from . models import SliderNews, Category
+from . models import SliderNews, Category, NewsLetter, Enquiries
+from django.contrib import messages
 
 # Create your views here.
+
 def home(request):
+    if request.method == "POST":
+        supplied_email = request.POST['email']
+        if NewsLetter.objects.filter(email=supplied_email).exists():
+            messages.info(request, f"Email already Used")
+        else:
+            NewsLetter.objects.create(email=supplied_email)
+            messages.info(request, "Thanks for subscribing to our newsletter")
     all_news = SliderNews.objects.all()
     all_category = Category.objects.all()
-    first_four_news = SliderNews.objects.all()[:4]
-    two_news = SliderNews.objects.all()[:2]
+    first_four_news = SliderNews.objects.all()[:4] # This is used to populate news with four divs not to disorganise
+    two_news = SliderNews.objects.all()[:2] # This is used to populate news with two divs not to disorganise
+
     news_count = SliderNews.objects.count()
-    if news_count >= 2:
-        last_two_news = SliderNews.objects.all()[news_count - 2:]
+    if news_count >= 2: #conditional statement use for retrieve the late two news in the database if the number of news is not known
+        last_two_news = SliderNews.objects.all()[news_count - 2:] #conditional statement use for retrieve the late two news in the database if the number of news is not known
     else:
-        last_two_news = SliderNews.objects.none()
+        last_two_news = SliderNews.objects.none() #conditional statement use for retrieve the late two news in the database if the number of news is not known
+
+
     single_image = SliderNews.objects.all()[1]
     single_category = SliderNews.objects.all()[1]
     single_headline = SliderNews.objects.all()[1]
@@ -37,10 +50,12 @@ def home(request):
     single_content0 = SliderNews.objects.all()[0]
     single_date0 = SliderNews.objects.all()[0]
     context = {
+        "all_news": all_news,
         "first_four_news": first_four_news,
         "categories": all_category,
         "two_news": two_news,
         "last_two_news": last_two_news,
+
         "single_image": single_image,
         "single_category": single_category,
         "single_headline": single_headline,
@@ -74,4 +89,12 @@ def category(request):
     return render(request, "news2/category.html")
 
 def contact(request):
+    if request.method == "POST":
+        supplied_name = request.POST["name"]
+        supplied_email = request.POST["email"]
+        supplied_phone = request.POST["phone"]
+        supplied_subject = request.POST["subject"]
+        supplied_information = request.POST["information"]
+        Enquiries.objects.create(name=supplied_name, email=supplied_email, phone=supplied_phone, subject=supplied_subject, information=supplied_information)
+        messages.info(request, "Informatio received")
     return render(request, "news2/contact.html")

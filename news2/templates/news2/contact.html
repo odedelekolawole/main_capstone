@@ -7,53 +7,64 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="section-title mb-0">
-                        <h4 class="m-0 text-uppercase font-weight-bold">Contact Us For Any Queries</h4>
+                        <h4 class="m-0 text-uppercase font-weight-bold">Contact Us For Any Information</h4>
                     </div>
                     <div class="bg-white border border-top-0 p-4 mb-3">
                         <div class="mb-4">
                             <h6 class="text-uppercase font-weight-bold">Contact Info</h6>
-                            <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                            <p class="mb-4">You can check my code and more projects on my github. <a href="https://www.github.com/odedelekolawole">Github</a>.</p>
 							<div class="mb-3">
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fa fa-map-marker-alt text-primary mr-2"></i>
                                     <h6 class="font-weight-bold mb-0">Our Office</h6>
                                 </div>
-                                <p class="m-0">123 Street, New York, USA</p>
+                                <p class="m-0">42 Montgomery Street, Yaba, Lagos Nigeria</p>
                             </div>
                             <div class="mb-3">
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fa fa-envelope-open text-primary mr-2"></i>
                                     <h6 class="font-weight-bold mb-0">Email Us</h6>
                                 </div>
-                                <p class="m-0">info@example.com</p>
+                                <p class="m-0">kolawoleodedele22@gmail.com</p>
                             </div>
                             <div class="mb-3">
                                 <div class="d-flex align-items-center mb-2">
                                     <i class="fa fa-phone-alt text-primary mr-2"></i>
                                     <h6 class="font-weight-bold mb-0">Call Us</h6>
                                 </div>
-                                <p class="m-0">+012 345 6789</p>
+                                <p class="m-0">+234 706 558 6331</p>
                             </div>
                         </div>
                         <h6 class="text-uppercase font-weight-bold mb-3">Contact Us</h6>
-                        <form>
+                        <form method="post">
+                        {% csrf_token %}
+                        <div>
+                            {% for message in messages %}
+                            <h4 style="color: red;" >{{ message }}</h4>
+                            {% endfor %}
+                        </div>
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="text" class="form-control p-4" placeholder="Your Name" required="required"/>
+                                        <input type="text" name="name" class="form-control p-4" placeholder="Your Name" required="required"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="email" class="form-control p-4" placeholder="Your Email" required="required"/>
+                                        <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" name="phone" class="form-control p-4" placeholder="Your Phone" required="required"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control p-4" placeholder="Subject" required="required"/>
+                                <input type="text" name="subject" class="form-control p-4" placeholder="Subject" required="required"/>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="4" placeholder="Message" required="required"></textarea>
+                                <textarea name="information" class="form-control" rows="4" placeholder="Message" required="required"></textarea>
                             </div>
                             <div>
                                 <button class="btn btn-primary font-weight-semi-bold px-4" style="height: 50px;"
@@ -68,20 +79,22 @@
                         <div class="section-title mb-0">
                             <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
                         </div>
+                    
                         <div class="bg-white border border-top-0 p-3">
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
+                            <a href="https://www.facebook.com/odedelekolawole" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
                                 <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Fans</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
+                            <a href="https://www.twitter.com/kolawoleh22" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
                                 <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Followers</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
+                            <a href="https://www.linkedin.com/in/kolawoleodedele" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
                                 <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Connects</span>
                             </a>
-                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
+        
+                            <!-- <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
                                 <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Followers</span>
                             </a>
@@ -92,27 +105,35 @@
                             <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
                                 <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
                                 <span class="font-weight-medium">12,345 Followers</span>
-                            </a>
+                            </a> -->
                         </div>
                     </div>
                     <!-- Social Follow End -->
 
                     <!-- Newsletter Start -->
+                    <form action="" method="post">
+                        <div>
+                            {% for message in messages %}
+                            <h3 style="color: red;" >{{ message }}</h3>
+                            {% endfor %}
+                        </div>
                     <div class="mb-3">
+                        {% csrf_token %}
                         <div class="section-title mb-0">
                             <h4 class="m-0 text-uppercase font-weight-bold">Newsletter</h4>
                         </div>
                         <div class="bg-white text-center border border-top-0 p-3">
-                            <p>Aliqu justo et labore at eirmod justo sea erat diam dolor diam vero kasd</p>
+                            <p>Kindly subscribe to our news letter to get the latest news</p>
                             <div class="input-group mb-2" style="width: 100%;">
-                                <input type="text" class="form-control form-control-lg" placeholder="Your Email">
+                                <input type="text" name="email" id="subs_email" class="form-control form-control-lg" placeholder="Enter Your Email">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary font-weight-bold px-3">Sign Up</button>
+                                    <button type="submit" class="btn btn-primary font-weight-bold px-3">Sign Up</button>
                                 </div>
                             </div>
-                            <small>Lorem ipsum dolor sit amet elit</small>
+                            <small>We deliver the best news across all areas of life in the best way</small>
                         </div>
                     </div>
+                    </form>
                     <!-- Newsletter End -->
                 </div>
             </div>
