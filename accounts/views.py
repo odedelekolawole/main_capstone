@@ -12,6 +12,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
+from drf_yasg.utils import swagger_auto_schema
 
 """
 Additional
@@ -24,10 +25,12 @@ from rest_framework.response import Response
 
 
 # Create your views here.
+
 class SignUpView(generics.GenericAPIView):
     permission_classes = []
     serializer_class = SignUpSerializer
 
+    @swagger_auto_schema(operation_summary="This endpoint signs up a user", operation_description="This endpoint signs up a user")
     def post(self, request:Request):
         data = request.data
         serializer = self.serializer_class(data=data)
@@ -44,6 +47,7 @@ class SignUpView(generics.GenericAPIView):
 class LoginView(APIView):
     permission_classes = []
 
+    @swagger_auto_schema(operation_summary="This endpoint logs in a user", operation_description="This endpoint logs in a user")
     def post(self, request:Request):
         email = request.data.get("email")
         password = request.data.get("password")
@@ -60,6 +64,7 @@ class LoginView(APIView):
         return Response(data={"Message": "Ooops!...Something went wrong: Invalid Credentials"})
 
 
+    @swagger_auto_schema(operation_summary="This endpoints provides the information of the user that is loggin", operation_description="This endpoints provides the information of the iuser that is loggin")
     def get(self, request:Request):
         details = {
             "user": str(request.user),
@@ -71,6 +76,7 @@ class LogoutView(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(operation_summary="This endpoint logouts a user", operation_description="This endpoint logs out a user")
     def post(self, request):
         request.auth.delete()
         response = { "message": f"Bye-bye { request.user.username.upper() } You have been logged out successfully.",                        

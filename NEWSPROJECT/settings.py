@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'drf_yasg',
     # 'rest_framework_simplejwt',
 ]
 
@@ -66,6 +67,21 @@ SIMPLE_JWT = {
     "SIGNING_KEY": SECRET_KEY,
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+
+SWAGGER_SETTINGS = {
+   'SECURITY_DEFINITIONS': {
+    #   'Basic': {
+    #         'type': 'basic'
+    #   },
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}
+
 
 AUTH_USER_MODEL = "accounts.User"
 

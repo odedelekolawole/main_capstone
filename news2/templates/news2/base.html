@@ -35,7 +35,7 @@
                 <nav class="navbar navbar-expand-sm bg-dark p-0">
                     <ul class="navbar-nav ml-n2">
                         <li class="nav-item border-right border-secondary">
-                            <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
+                            <a class="nav-link text-body small" href="#">Sunday, October 1, 2045</a>
                         </li>
                         <li class="nav-item border-right border-secondary">
                             <a class="nav-link text-body small" href="#">Advertise</a>
@@ -76,12 +76,12 @@
         </div>
         <div class="row align-items-center bg-white py-3 px-lg-5">
             <div class="col-lg-4">
-                <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
+                <a href="{% url 'home' %}" class="navbar-brand p-0 d-none d-lg-block">
                     <h1 class="m-0 display-4 text-uppercase text-primary">Bright<span class="text-secondary font-weight-normal">News</span></h1>
                 </a>
             </div>
             <div class="col-lg-8 text-center text-lg-right">
-                <a href="https://htmlcodex.com"><img class="img-fluid" src="{% static 'news2/img/bright_news.png' %}" alt="" height="10" width="200"></a>
+                <a href="{% url 'home' %}"><img class="img-fluid" src="{% static 'news2/img/bright_news.png' %}" alt="" height="10" width="200"></a>
             </div>
         </div>
     </div>
@@ -159,9 +159,10 @@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h5 class="mb-4 text-white text-uppercase font-weight-bold">Categories</h5>
                 <div class="m-n1">
-                    <a href="" class="btn btn-sm btn-secondary m-1">Artificial Interlligence</a>
-                    <a href="" class="btn btn-sm btn-secondary m-1">Politics</a>
-                    <a href="" class="btn btn-sm btn-secondary m-1">Business and Economic Analysis</a>
+                    {% for cat in all_category %}
+                    <a href="" class="btn btn-sm btn-secondary m-1">{{ cat.category  }}</a>
+                    {% endfor %}
+                    <!-- <a href="" class="btn btn-sm btn-secondary m-1">Business and Economic Analysis</a>
                     <a href="" class="btn btn-sm btn-secondary m-1">Corporate</a>
                     <a href="" class="btn btn-sm btn-secondary m-1">Entertainment</a>
                     <a href="" class="btn btn-sm btn-secondary m-1">Health</a>
@@ -179,7 +180,7 @@
                     <a href="" class="btn btn-sm btn-secondary m-1">Religion</a>
                     <a href="" class="btn btn-sm btn-secondary m-1">Fashion and Lifesyle</a>
                     <a href="" class="btn btn-sm btn-secondary m-1">Finance and Economy</a>
-                    <a href="" class="btn btn-sm btn-secondary m-1">Agriculture</a>
+                    <a href="" class="btn btn-sm btn-secondary m-1">Agriculture</a> -->
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 mb-5">

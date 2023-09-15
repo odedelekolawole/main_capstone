@@ -83,7 +83,32 @@ def home(request):
     return render(request, "news2/index.html", context)
 
 def about(request):
-    return render(request, "news2/about.html")
+    if request.method == "POST":
+        supplied_email = request.POST['email']
+        if NewsLetter.objects.filter(email=supplied_email).exists():
+            messages.info(request, f"Email already Used")
+        else:
+            NewsLetter.objects.create(email=supplied_email)
+            messages.info(request, "Thanks for subscribing to our newsletter")
+    all_news = SliderNews.objects.all()
+    all_category = Category.objects.all()
+    all_enquiries = Enquiries.objects.all()
+    news_on_index_zero = SliderNews.objects.all()[0]
+    news_on_index_one = SliderNews.objects.all()[1]
+    news_on_index_two = SliderNews.objects.all()[2]
+    news_on_index_three = SliderNews.objects.all()[3]
+    news_on_index_four = SliderNews.objects.all()[4]
+    context = {
+        "all_news": all_news,
+        "news_on_index_zero": news_on_index_zero,
+        "news_on_index_one": news_on_index_one,
+        "news_on_index_two": news_on_index_two,
+        "news_on_index_three": news_on_index_three,
+        "news_on_index_four": news_on_index_four,
+        "all_category": all_category,
+        "all_enquiries": all_enquiries,
+    }
+    return render(request, "news2/about.html", context)
 
 def category(request):
     return render(request, "news2/category.html")

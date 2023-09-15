@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Category1, News1
-from . serializers import Category1Serializer, Continent1Serializer, News1Serializer
+from . serializers import Category1Serializer, News1Serializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -13,6 +13,8 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from django.http import Http404
+import django_filters
+from drf_yasg.utils import swagger_auto_schema
 import uuid
 
 # Create your views here.
@@ -26,10 +28,8 @@ class Category1ListCreateView(APIView):
     serializer_class = Category1Serializer
     permission_classes = [AllowAny]
     pagination_class = PageNumberPagination
-    """
-        STARTS: This endpoint is responsible for listing/displaying all the categories of news available in the database.
-    """
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for listing all the categories of news in the database", operation_description="This are the list of all the categories of news")
     def get(self, request:Request, *args, **kwargs):
         paginator = self.pagination_class()
         category = Category1.objects.all().order_by("name")
@@ -41,10 +41,8 @@ class Category1ListCreateView(APIView):
         }
         return paginator.get_paginated_response(data=response)
     
-    """
-        STARTS: This endpoint is responsible for posting/creating news.
-    """
     
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for creating news category only by the superuser", operation_description="This endpoint create news category only by the superuser")
     def post(self, request:Request, *args, **kwargs):
         user = request.user
         if user.is_superuser:
@@ -68,10 +66,8 @@ class Category1ListCreateView(APIView):
 class Category1RetrieveUpdateDeleteView(APIView):
     permission_classes = []
     serializer_class = Category1Serializer
-    """
-        STARTS: This endpoint is responsible for retrieving a category of news from the database.
-    """
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for retrieving a category of news with UUID from the database by anyone", operation_description="This endpoint retrieves single category of news from the database with its UUID by anyone")
     def get(self, request, uuid):
         category = Category1.objects.get(id=uuid)
         serializer = self.serializer_class(category)        
@@ -82,6 +78,7 @@ class Category1RetrieveUpdateDeleteView(APIView):
         return Response(data=response, status=status.HTTP_200_OK)
 
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for updating or modifying news category only by the superuser", operation_description="This endpoint modifies or updates news category only by the superuser")
     def put(self, request, uuid):
         """
         STARTS: This endpoint is responsible for rupdating/modifying a category of news from the database.
@@ -106,6 +103,7 @@ class Category1RetrieveUpdateDeleteView(APIView):
             return Response(data=response, status=status.HTTP_401_UNAUTHORIZED)
 
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for deleting news category only by the superuser", operation_description="This endpoint deleting news category only by the superuser")
     def delete(self, request, uuid):
         """
         STARTS: This endpoint is responsible for deleting/reoving a category of news from the database.
@@ -121,6 +119,8 @@ class Category1RetrieveUpdateDeleteView(APIView):
             }
             return Response(data=response, status=status.HTTP_401_UNAUTHORIZED)
 
+
+
 """
     ENDS: THE ENDPOINTS RESPONSIBLE FOR LISTING/DISPLAYING, POSTING, RETRIEVING, UPDATING AND DELETING CATEGORIES OF NEWS ENDS HERE
 """
@@ -130,24 +130,20 @@ class Category1RetrieveUpdateDeleteView(APIView):
     BREAK BREAK BREAK BREAK BREAK NREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BREAK BRAEK
 """
 
-"""
-    STARTS: THIS ENDPOINTS IS RESPONSIBLE FOR LISTING/DISPLAYING, POSTING, RETRIEVING, UPDATING AND DELETING THE MAIN NEWS
-"""
+
+
 class News1ListCreateView(APIView):
     permission_classes = [AllowAny]
     serializer_class = News1Serializer
     queryset = News1.objects.all()
     pagination_class = PageNumberPagination
-    # filter_backends = [DjangoFilterBackend]
     DjangoFilterBackend = [SearchFilter, OrderingFilter]
     ordering_fields = ["reporter"]
     search_fields = ['region', 'continent']
     
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for listing all the news in the database", operation_description="This are the list of all the news")
     def get(self, request):
-        """
-        STARTS: This endpoint is responsible for listing/displaying all the categories of news available in the database.
-        """
         paginator = self.pagination_class()
         news = News1.objects.all().order_by("-created")
         page = paginator.paginate_queryset(news, request)
@@ -158,6 +154,7 @@ class News1ListCreateView(APIView):
         }
         return paginator.get_paginated_response(data=message)
     
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for creating news by users", operation_description="This endpoint create news by users")
     def post(self, request):
             data = request.data
             serialized_data = self.serializer_class(data=data)
@@ -178,6 +175,7 @@ class News1RetrieveUpdateDeleteView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = News1Serializer
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for retrieving news with its UUID from the database by anyone", operation_description="This endpoint retrieves single news from the database with its UUID by anyone")
     def get(self, request, uuid):
         """
             This endpoin is responsible for terieving/getting  news with UUID from the database 
@@ -191,6 +189,7 @@ class News1RetrieveUpdateDeleteView(APIView):
         return Response(data=response, status=status.HTTP_200_OK)
     
     
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for updating or modifying news only by the creator of the news (reporter)", operation_description="This endpoint modifies or updates news only by the creator of the news (reporter)")
     def put(self, request, uuid):
         try:
             news = get_object_or_404(News1, id=uuid)
@@ -220,6 +219,7 @@ class News1RetrieveUpdateDeleteView(APIView):
         return Response(data=response, status=status.HTTP_401_UNAUTHORIZED)
 
 
+    @swagger_auto_schema(operation_summary="This endpoint is responsible for deleting news only by the creator of the news (reporter)", operation_description="This endpoint deleting news category only by the creator of the news (reporter)")
     def delete(self, request, uuid):
         news = get_object_or_404(News1, id=uuid)
         if request.user != news.reporter:
@@ -242,6 +242,7 @@ class GetReporterNewsOnly(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = News1Serializer
 
+    @swagger_auto_schema(operation_summary="This list all the news associated with a particular user by passing the name on the url", operation_description="This list all the news associated with a particular user by passing the username on the url")
     def get(self, request, *args, **kwargs):
         user = request.user
         queryset = News1.objects.filter(reporter=user)
@@ -252,6 +253,7 @@ class GetReporterNewsOnly(APIView):
 class GetReporterNewsByparsingName(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = News1Serializer
+    @swagger_auto_schema(operation_summary="This list all the news associated with a particular user", operation_description="This list all the news associated with a particular user")
     def get(self, request, *args, **kwargs):
         username = self.kwargs.get("username")
         queryset = News1.objects.filter(reporter__username=username)
@@ -261,12 +263,18 @@ class GetReporterNewsByparsingName(APIView):
 """
     ENDS: THE ENDPOINTS RESPONSIBLE FOR LISTING/DISPLAYING, POSTING, RETRIEVING, UPDATING AND DELETING MAIN NEWS ENDS HERE
 """
-class News1ListView(generics.ListAPIView):
-    permission_classes = [AllowAny]
-    queryset = News1.objects.all
-    serializer_class = News1Serializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["category", "continent"]
+class News1Filter(django_filters.FilterSet):
+    class Meta:
+        model = News1
+        fields = ["continent", "category"] 
+
+
+# class News1ListView(generics.ListAPIView):
+#     permission_classes = [AllowAny]
+#     queryset = News1.objects.all
+#     serializer_class = News1Serializer
+#     filter_backends = [DjangoFilterBackend]
+#     filterset_fields = ["category", "continent"]
     # ordering_fields = ["name"]
     # search_fields = ['name', 'tagline']
 

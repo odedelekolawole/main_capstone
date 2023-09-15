@@ -8,5 +8,5 @@ urlpatterns = [
     path("reporter/", views.GetReporterNewsOnly.as_view(), name="reporter_news"),
     path("passing/<username>/", views.GetReporterNewsByparsingName.as_view(), name="reporter_news"),
     path("news/<uuid:uuid>/", views.News1RetrieveUpdateDeleteView.as_view(), name="new_modify"),
-    path("filter/", views.News1ListView.as_view(), name="filter"),
+    # path("filter/", views.News1ListView.as_view(), name="filter"),
 ]

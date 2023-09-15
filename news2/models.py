@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Category(models.Model):
@@ -13,7 +14,8 @@ class SliderNews(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     headline = models.CharField(max_length=500) 
     content = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=timezone.now)
+
 
     class Meta:        
         verbose_name_plural = "SliderNews"
