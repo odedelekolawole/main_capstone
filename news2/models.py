@@ -40,6 +40,13 @@ class Enquiries(models.Model):
     def __str__(self):
          return self.name
     
+class UserComments(models.Model):
+     user_image = models.ImageField(upload_to="user_images")
+     user_name = models.CharField(max_length=50)
+     comment_date = models.DateTimeField(default=timezone.now)
+     comment = models.TextField(max_length=500)
+
+    
 
 
         
