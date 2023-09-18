@@ -1,4 +1,4 @@
-{% extends "news2/base.html" %}
+{% extends "news2/base2.html" %}
 {% load static %}
 {% block content %}
 
@@ -92,7 +92,7 @@
                     <div class="overlay">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                href="">{{ featured.category }}</a>
+                                href="{% url "abou" %}">{{ featured.category }}</a>
                             <a class="text-white" href=""><small>{{ featured.date }}</small></a>
                         </div>
                         <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">{{ featured.headline|truncatewords:5 }}</a>
