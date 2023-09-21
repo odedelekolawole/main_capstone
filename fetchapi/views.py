@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
-def fetch_news(request):
+def fetch_external_news(request):
     url = ('https://newsapi.org/v2/top-headlines?'
        'sources=bbc-news&'
        'apiKey=61b8cb52e787484388c5395e6f9c7596')

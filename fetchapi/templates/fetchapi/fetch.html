@@ -8,19 +8,19 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 style="color: red; font-size: 50px;">API Latest News</h1>
+    <h1 style="color: red; font-size: 50px;">API LATEST NEWS</h1>
     <div>
         <img src="{% static 'fetchapi/bright_news.png' %}" alt="" height="100">
     </div>
     {% for news_item in database_fetched_news %}
     <div class="news-card">
-        <div class="news-title">{{ news_item.title|truncatewords:7 }}</div>
+        <div class="news-title">{{ news_item.title }}</div>
         <div class="news-description">{{ news_item.description }}</div>
-        <p class="news-content">{{ news_item.content }}<p/> 
-            <a href="{{ news_item.url }}" class="read-more" target="_blank">Read more</a> <br>
         {% if news_item.image %}
         <img class="news-image" src="{{ news_item.image }}" alt="News Image"  width="350" height="550">
         {% endif %}
+        <p class="news-content">{{ news_item.content }}<p/> 
+            <a href="{{ news_item.url }}" class="read-more" target="_blank">Read more</a> <br>
         <div class="news-author">Author: {{ news_item.author }}</div>
         <div class="news-published">Published At: {{ news_item.published }}</div>
     </div>

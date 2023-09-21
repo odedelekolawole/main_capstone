@@ -1,21 +1,4 @@
-/* .news-card {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-.news-title {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-.news-description {
-            color: #555;
-        }
-.news-image {
-            max-width: 100%;
-            height: auto;
-        } */
 body {
-    /* background-color: blanchedalmond; */
     background: url(analytic2.jpg);
 }
 
@@ -40,10 +23,11 @@ h1 {
 .news-title {
             font-weight: bold;
             font-size: 40px;
-            margin-left: 200px;
+            /* margin-left: 200px; */
             margin-top: 20px;
             margin-bottom: 20px;
             color: red;
+            text-align: center;
         }
 .news-description {
             color: white;
@@ -57,8 +41,13 @@ h1 {
             margin-left: 430px;
             border-radius: 5%;
             margin-top: 30px;
+            transition: filter 1s ease-in-out;
 
         }
+.news-image:hover{
+    filter: brightness(15%);
+}
+
 .news-content {
             text-align: center;
             font-size: 25px;
@@ -81,5 +70,6 @@ h1 {
             
         }
 .read-more:hover {
-    color: cadetblue;
+    color: white;
+    text-decoration: none;
 }
