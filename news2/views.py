@@ -89,48 +89,6 @@ def home(request):
     }
     return render(request, "news2/index.html", context)
 
-# def details(request, pk):
-#     # Get the news item based on the provided pk
-#     news_item = get_object_or_404(SliderNews, pk=pk)[1]
-
-#     if request.method == "POST":
-#         # Handle newsletter subscription
-#         supplied_email = request.POST.get('email')
-#         if supplied_email:
-#             if NewsLetter.objects.filter(email=supplied_email).exists():
-#                 messages.info(request, "Email already used.")
-#             else:
-#                 NewsLetter.objects.create(email=supplied_email)
-#                 messages.info(request, "Thanks for subscribing to our newsletter.")
-
-#         # Handle inquiries
-#         supplied_name = request.POST.get("name")
-#         supplied_email = request.POST.get("email")
-#         supplied_phone = request.POST.get("phone")
-#         supplied_subject = request.POST.get("subject")
-#         supplied_information = request.POST.get("information")
-
-#         Enquiries.objects.create(
-#             name=supplied_name,
-#             email=supplied_email,
-#             phone=supplied_phone,
-#             subject=supplied_subject,
-#             information=supplied_information
-#         )
-
-#         messages.info(request, "Information received.")
-
-#     # Retrieve other data based on the news_item
-#     all_category = Category.objects.all()  # Modify as needed based on your logic
-#     all_enquiries = Enquiries.objects.all()  # Modify as needed based on your logic
-
-#     context = {
-#         "news_item": news_item,
-#         "all_category": all_category,
-#         "all_enquiries": all_enquiries,
-#     }
-#     return render(request, "news2/details.html", context)
-
 
 def details(request, pk):
     if request.method == "POST":
