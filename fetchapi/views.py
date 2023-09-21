@@ -29,3 +29,10 @@ def fetch_news(request):
     serialized_news = News2Serializer(database_news, many=True)
     return Response(serialized_news.data, status=status.HTTP_200_OK)
 
+def fetch_news(request):
+    database_news = News2.objects.all()
+    context = {
+        "database_fetched_news": database_news
+    }
+    return render(request, 'fetchapi/fetch.html', context )
+

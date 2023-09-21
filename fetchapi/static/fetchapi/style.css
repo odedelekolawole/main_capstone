@@ -1,46 +1,85 @@
-body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            background-color: #333;
-            color: #fff;
+/* .news-card {
+            border: 1px solid #ccc;
             padding: 10px;
-            text-align: center;
+            margin-bottom: 10px;
         }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #fff;
-            margin: 10px;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-            margin: 0;
-        }
-
-        p {
-            color: #666;
-            margin: 10px 0;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
+.news-title {
             font-weight: bold;
+            font-size: 1.2em;
+        }
+.news-description {
+            color: #555;
+        }
+.news-image {
+            max-width: 100%;
+            height: auto;
+        } */
+body {
+    /* background-color: blanchedalmond; */
+    background: url(analytic2.jpg);
+}
+
+h1 {
+            margin-left: 630px;
         }
 
-        a:hover {
-            text-decoration: underline;
+.news-card {
+            border: 3px solid #f70808;
+            padding: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-self: center;
+            width: 70% ;
+            align-items: center;
+            margin-left: 200px;
+            background-color: rgb(100, 166, 179);
         }
+.news-card:hover {
+    background-color: gray;
+}
+.news-title {
+            font-weight: bold;
+            font-size: 40px;
+            margin-left: 200px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: red;
+        }
+.news-description {
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            font-style: italic;
+        }
+.news-image {
+            max-width: 100%;
+            height: auto;
+            margin-left: 430px;
+            border-radius: 5%;
+            margin-top: 30px;
+
+        }
+.news-content {
+            text-align: center;
+            font-size: 25px;
+            color: whitesmoke;
+            font-style: oblique;
+        }
+        .news-author {
+            text-align: right;
+        }
+.news-published {
+            text-align: right;
+        }
+
+.read-more{
+          
+            width: 100%;
+            margin-left: 500px;
+            font-size: 40px;
+            text-decoration: underline;
+            
+        }
+.read-more:hover {
+    color: cadetblue;
+}

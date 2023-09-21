@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import HttpRequest
 from . models import SliderNews, Category, NewsLetter, Enquiries
@@ -24,41 +24,41 @@ def home(request):
     fourth_news = SliderNews.objects.all()[3]
     fifth_news = SliderNews.objects.all()[4]
     sixth_news = SliderNews.objects.all()[6]
-    seventh_news = SliderNews.objects.all()[6]
-    eighth_news = SliderNews.objects.all()[7]
-    ninth_news = SliderNews.objects.all()[8]
-    tenth_news = SliderNews.objects.all()[9]
-    eleventh_news = SliderNews.objects.all()[10]
-    twelve_news = SliderNews.objects.all()[11]
-    thirthenth_news = SliderNews.objects.all()[12]
-    fourteenth_news = SliderNews.objects.all()[13]
-    fifteenth_news = SliderNews.objects.all()[14]
-    sixteeth_news = SliderNews.objects.all()[15]
-    seventeenth_news = SliderNews.objects.all()[16]
-    eighteenth_news = SliderNews.objects.all()[17]
-    nineteenth_news = SliderNews.objects.all()[18]
-    select_news0 = SliderNews.objects.filter(category=0)
-    select_news1 = SliderNews.objects.filter(category=1)
-    select_news2 = SliderNews.objects.filter(category=2)
-    select_news3 = SliderNews.objects.filter(category=3)
-    select_news4 = SliderNews.objects.filter(category=4)
-    select_news5 = SliderNews.objects.filter(category=5)
-    select_news6 = SliderNews.objects.filter(category=6)
-    select_news7 = SliderNews.objects.filter(category=7)
-    select_news8 = SliderNews.objects.filter(category=8)
-    select_news9 = SliderNews.objects.filter(category=9)
-    select_news10 = SliderNews.objects.filter(category=10)
-    select_news11 = SliderNews.objects.filter(category=11)
-    select_news12 = SliderNews.objects.filter(category=12)
-    select_news13 = SliderNews.objects.filter(category=13)
-    select_news14 = SliderNews.objects.filter(category=14)
-    select_news15 = SliderNews.objects.filter(category=15)
-    select_news16 = SliderNews.objects.filter(category=16)
-    select_news17 = SliderNews.objects.filter(category=17)
-    select_news18 = SliderNews.objects.filter(category=18)
-    select_news19 = SliderNews.objects.filter(category=19)
-    select_news20 = SliderNews.objects.filter(category=20)
-    select_news21 = SliderNews.objects.filter(category=21)
+    # seventh_news = SliderNews.objects.all()[6]
+    # eighth_news = SliderNews.objects.all()[7]
+    # ninth_news = SliderNews.objects.all()[8]
+    # tenth_news = SliderNews.objects.all()[9]
+    # eleventh_news = SliderNews.objects.all()[10]
+    # twelve_news = SliderNews.objects.all()[11]
+    # thirthenth_news = SliderNews.objects.all()[12]
+    # fourteenth_news = SliderNews.objects.all()[13]
+    # fifteenth_news = SliderNews.objects.all()[14]
+    # sixteeth_news = SliderNews.objects.all()[15]
+    # seventeenth_news = SliderNews.objects.all()[16]
+    # eighteenth_news = SliderNews.objects.all()[17]
+    # nineteenth_news = SliderNews.objects.all()[18]
+    # select_news0 = SliderNews.objects.filter(category=0)
+    # select_news1 = SliderNews.objects.filter(category=1)
+    # select_news2 = SliderNews.objects.filter(category=2)
+    # select_news3 = SliderNews.objects.filter(category=3)
+    # select_news4 = SliderNews.objects.filter(category=4)
+    # select_news5 = SliderNews.objects.filter(category=5)
+    # select_news6 = SliderNews.objects.filter(category=6)
+    # select_news7 = SliderNews.objects.filter(category=7)
+    # select_news8 = SliderNews.objects.filter(category=8)
+    # select_news9 = SliderNews.objects.filter(category=9)
+    # select_news10 = SliderNews.objects.filter(category=10)
+    # select_news11 = SliderNews.objects.filter(category=11)
+    # select_news12 = SliderNews.objects.filter(category=12)
+    # select_news13 = SliderNews.objects.filter(category=13)
+    # select_news14 = SliderNews.objects.filter(category=14)
+    # select_news15 = SliderNews.objects.filter(category=15)
+    # select_news16 = SliderNews.objects.filter(category=16)
+    # select_news17 = SliderNews.objects.filter(category=17)
+    # select_news18 = SliderNews.objects.filter(category=18)
+    # select_news19 = SliderNews.objects.filter(category=19)
+    # select_news20 = SliderNews.objects.filter(category=20)
+    # select_news21 = SliderNews.objects.filter(category=21)
     first_four_news = SliderNews.objects.all()[:4]
 
     news_count = SliderNews.objects.count()
@@ -88,6 +88,49 @@ def home(request):
         "first_two_news": first_two_news,
     }
     return render(request, "news2/index.html", context)
+
+# def details(request, pk):
+#     # Get the news item based on the provided pk
+#     news_item = get_object_or_404(SliderNews, pk=pk)[1]
+
+#     if request.method == "POST":
+#         # Handle newsletter subscription
+#         supplied_email = request.POST.get('email')
+#         if supplied_email:
+#             if NewsLetter.objects.filter(email=supplied_email).exists():
+#                 messages.info(request, "Email already used.")
+#             else:
+#                 NewsLetter.objects.create(email=supplied_email)
+#                 messages.info(request, "Thanks for subscribing to our newsletter.")
+
+#         # Handle inquiries
+#         supplied_name = request.POST.get("name")
+#         supplied_email = request.POST.get("email")
+#         supplied_phone = request.POST.get("phone")
+#         supplied_subject = request.POST.get("subject")
+#         supplied_information = request.POST.get("information")
+
+#         Enquiries.objects.create(
+#             name=supplied_name,
+#             email=supplied_email,
+#             phone=supplied_phone,
+#             subject=supplied_subject,
+#             information=supplied_information
+#         )
+
+#         messages.info(request, "Information received.")
+
+#     # Retrieve other data based on the news_item
+#     all_category = Category.objects.all()  # Modify as needed based on your logic
+#     all_enquiries = Enquiries.objects.all()  # Modify as needed based on your logic
+
+#     context = {
+#         "news_item": news_item,
+#         "all_category": all_category,
+#         "all_enquiries": all_enquiries,
+#     }
+#     return render(request, "news2/details.html", context)
+
 
 def details(request, pk):
     if request.method == "POST":
@@ -126,6 +169,7 @@ def details(request, pk):
         "all_enquiries": all_enquiries,
     }
     return render(request, "news2/details.html", context)
+
 
     
 

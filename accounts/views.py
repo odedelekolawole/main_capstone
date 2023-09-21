@@ -61,7 +61,7 @@ class LoginView(APIView):
                 "token": user.auth_token.key
             }
             return Response(data=response, status=status.HTTP_200_OK)
-        return Response(data={"Message": "Ooops!...Something went wrong: Invalid Credentials"})
+        return Response(data={"Message": "Ooops!...Something went wrong: Invalid Credentials, Is like you did not provide your login datails or your login details are incorrect"})
 
 
     @swagger_auto_schema(operation_summary="This endpoints provides the information of the user that is loggin", operation_description="This endpoints provides the information of the iuser that is loggin")

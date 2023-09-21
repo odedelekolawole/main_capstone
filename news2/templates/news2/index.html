@@ -3,8 +3,6 @@
 {% block content %}
 
     <!-- Navbar End -->
-
-
     <!-- Main News Slider Start -->
     <div>
         {% for message in messages %}
@@ -92,7 +90,7 @@
                     <div class="overlay">
                         <div class="mb-2">
                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
-                                href="{% url "abou" %}">{{ featured.category }}</a>
+                                href="">{{ featured.category }}</a>
                             <a class="text-white" href=""><small>{{ featured.date }}</small></a>
                         </div>
                         <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="">{{ featured.headline|truncatewords:5 }}</a>
@@ -278,7 +276,7 @@
                                             <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2" href="">{{ fifth_news.category }}</a>
                                             <a class="text-body" href=""><small>{{ fifth_news.date }}</small></a>
                                         </div>
-                                        <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="">{{ fifth_news.headline|truncatewords:4 }}</a>
+                                        <a class="h4 d-block mb-3 text-secondary text-uppercase font-weight-bold" href="{% url 'single' pk=fifth_news.pk %}">headkine  {{ fifth_news.headline|truncatewords:4 }}</a>
                                         <p class="m-0">{{ fifth_news.content|truncatewords:20 }}</p>
                                     </div>
                                     <div class="d-flex justify-content-between bg-white border-top mt-auto p-4">
@@ -304,7 +302,7 @@
                                         <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">{{ this.category }}</a>
                                         <a class="text-body" href=""><small>{{ this.date }}</small></a>
                                     </div>
-                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">{{ this.headline|truncatewords:3 }}</a>
+                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="{% url 'single' pk=this.pk %}">tru  {{ this.headline|truncatewords:3 }}</a>
                                 </div>
                             </div>
                             {% endfor %}
