@@ -12,7 +12,6 @@
     <div>
         <img src="{% static 'fetchapi/bright_news.png' %}" alt="" height="70" width="500">
     </div>
-    {% for news_item in database_fetched_news %}
     <div class="news-card">
         <div class="news-title">Title: {{ news_item.title }}</div>
         <div class="news-description">Description: {{ news_item.description }}</div>
@@ -22,9 +21,7 @@
         <p class="news-content">Content: {{ news_item.content }}<p/> 
             <a href="{{ news_item.url }}" class="read-more" target="_blank">Read more...</a> <br>
         <div class="news-author">Author: {{ news_item.author }}</div>
-        <!-- <div class="news-published">Published At: {{ news_item.published }}</div> -->
-        <a href="{% url 'single' news_item.pk %}"><div class="news-published">Published At: {{ news_item.published }}</div></a>
+        <div class="news-published">Published At: {{ news_item.published }}</div>
      </div>
-     {% endfor %}
 </body>
 </html>

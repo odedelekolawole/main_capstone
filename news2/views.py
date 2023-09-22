@@ -90,7 +90,7 @@ def home(request):
     return render(request, "news2/index.html", context)
 
 
-def details(request, pk):
+def details(request):
     if request.method == "POST":
         supplied_email = request.POST['email']
         if NewsLetter.objects.filter(email=supplied_email).exists():

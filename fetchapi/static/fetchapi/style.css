@@ -54,11 +54,13 @@ h1 {
             color: whitesmoke;
             font-style: oblique;
         }
-        .news-author {
+.news-author {
             text-align: right;
+            color: white;
         }
 .news-published {
             text-align: right;
+            color: white;
         }
 
 .read-more{

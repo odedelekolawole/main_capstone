@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import requests
 from . serializers import News2Serializer
 from . models import News2
@@ -35,4 +35,3 @@ def fetch_news(request):
         "database_fetched_news": database_news
     }
     return render(request, 'fetchapi/fetch.html', context )
-

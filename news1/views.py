@@ -267,21 +267,3 @@ class News1Filter(django_filters.FilterSet):
     class Meta:
         model = News1
         fields = ["continent", "category"] 
-
-
-# class News1ListView(generics.ListAPIView):
-#     permission_classes = [AllowAny]
-#     queryset = News1.objects.all
-#     serializer_class = News1Serializer
-#     filter_backends = [DjangoFilterBackend]
-#     filterset_fields = ["category", "continent"]
-    # ordering_fields = ["name"]
-    # search_fields = ['name', 'tagline']
-
-# class Category1ListCreateView(APIView):
-#     serializer_class = Category1Serializer
-#     permission_classes = [AllowAny]
-#     pagination_classes = [PageNumberPagination]
-#     filter_backends = [SearchFilter, OrderingFilter]
-#     ordering_fields = ["name"]
-#     search_fields = ['name', 'tagline']
