@@ -23,7 +23,7 @@
             <a href="{{ news_item.url }}" class="read-more" target="_blank">Read more...</a> <br>
         <div class="news-author">Author: {{ news_item.author }}</div>
         <!-- <div class="news-published">Published At: {{ news_item.published }}</div> -->
-        <a href="{% url 'single' news_item.pk %}"><div class="news-published">Published At: {{ news_item.published }}</div></a>
+        <a href=""><div class="news-published">Published At: {{ news_item.published }}</div></a>
      </div>
      {% endfor %}
 </body>
