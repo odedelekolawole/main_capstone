@@ -5,7 +5,7 @@ from . models import News2
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
@@ -29,6 +29,7 @@ def fetch_external_news(request):
     serialized_news = News2Serializer(database_news, many=True)
     return Response(serialized_news.data, status=status.HTTP_200_OK)
 
+@permission_classes([AllowAny])
 def fetch_news(request):
     database_news = News2.objects.all()
     context = {
