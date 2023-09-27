@@ -199,7 +199,7 @@ class News1RetrieveUpdateDeleteView(APIView):
             }
             return Response(data=response, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check if the authenticated user is the owner of the news
+        # Checks if the authenticated user is the owner of the news
         if request.user == news.reporter:
             data = request.data
             serialized_data = self.serializer_class(instance=news, data=data)
@@ -233,9 +233,6 @@ class News1RetrieveUpdateDeleteView(APIView):
                 "Message": f"News deleted successfully by { news.reporter.username.upper() }"
             }
             return Response(data=response, status=status.HTTP_410_GONE)
-
-
-
         
 
 class GetReporterNewsOnly(APIView):
@@ -247,7 +244,11 @@ class GetReporterNewsOnly(APIView):
         user = request.user
         queryset = News1.objects.filter(reporter=user)
         serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response = {
+            "Message": f"The are all the news posted by: { request.user.username.upper() }",
+            "data": serializer.data
+        }
+        return Response(data=response, status=status.HTTP_200_OK)
 
 
 class GetReporterNewsByparsingName(APIView):
@@ -258,7 +259,11 @@ class GetReporterNewsByparsingName(APIView):
         username = self.kwargs.get("username")
         queryset = News1.objects.filter(reporter__username=username)
         serializer = self.serializer_class(queryset, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        response = {
+            "Message": f"The are all the news posted by you { username.upper() } ",
+            "data": serializer.data
+        }
+        return Response(data=response, status=status.HTTP_200_OK)
 
 """
     ENDS: THE ENDPOINTS RESPONSIBLE FOR LISTING/DISPLAYING, POSTING, RETRIEVING, UPDATING AND DELETING MAIN NEWS ENDS HERE
