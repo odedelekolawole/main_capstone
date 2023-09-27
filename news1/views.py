@@ -245,7 +245,7 @@ class GetReporterNewsOnly(APIView):
         queryset = News1.objects.filter(reporter=user)
         serializer = self.serializer_class(queryset, many=True)
         response = {
-            "Message": f"The are all the news posted by: { request.user.username.upper() }",
+            "Message": f"These are all the news posted by: { request.user.username.upper() }",
             "data": serializer.data
         }
         return Response(data=response, status=status.HTTP_200_OK)
@@ -260,7 +260,7 @@ class GetReporterNewsByparsingName(APIView):
         queryset = News1.objects.filter(reporter__username=username)
         serializer = self.serializer_class(queryset, many=True)
         response = {
-            "Message": f"The are all the news posted by you { username.upper() } ",
+            "Message": f"These are all the news posted by you { username.upper() } ",
             "data": serializer.data
         }
         return Response(data=response, status=status.HTTP_200_OK)
