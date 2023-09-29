@@ -166,7 +166,10 @@ class News1ListCreateView(APIView):
                     "data": serialized_data.data
                 }
                 return Response(data=response, status=status.HTTP_201_CREATED)
-            return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)    
+            return Response(serialized_data.errors, status=status.HTTP_400_BAD_REQUEST)
+      
+    
+
 
     """
         This subsection is responsible responsible for for retrieving, updating/modifying, and deleting a news from the database

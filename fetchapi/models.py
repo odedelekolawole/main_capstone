@@ -11,8 +11,9 @@ class News2(models.Model):
     content = models.TextField()
 
     class Meta:
-        def __str__(self):
+        verbose_name_plural = "News2"        
+        
+    def __str__(self):
             return self.title
         
-        verbose_name_plural = "News2"
 

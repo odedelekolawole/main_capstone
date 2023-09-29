@@ -31,7 +31,7 @@ def fetch_external_news(request):
 
 @permission_classes([AllowAny])
 def fetch_news(request):
-    database_news = News2.objects.all()
+    database_news = News2.objects.all().order_by("-published")
     context = {
         "database_fetched_news": database_news
     }
